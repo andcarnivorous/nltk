@@ -2651,7 +2651,8 @@ class ItalianStemmer(_StandardStemmer):
                         'ist\xE8', 'ist\xEC', 'ante', 'anti',
                         'enza', 'enze', 'ico', 'ici', 'ica', 'ice',
                         'oso', 'osi', 'osa', 'ose', 'it\xE0',
-                        'ivo', 'ivi', 'iva', 'ive')
+                        'ivo', 'ivi', 'iva', 'ive', 'azzo', 'azza',
+                        'azzo')
     __step2_suffixes = ('erebbero', 'irebbero', 'assero', 'assimo',
                         'eranno', 'erebbe', 'eremmo', 'ereste',
                         'eresti', 'essero', 'iranno', 'irebbe',
@@ -2764,6 +2765,8 @@ class ItalianStemmer(_StandardStemmer):
                     word = word[:-6]
                     rv = rv[:-6]
 
+
+                    
                 elif r2.endswith(suffix):
                     step1_success = True
                     if suffix in ("azione", "azioni", "atore", "atori"):
@@ -2778,6 +2781,12 @@ class ItalianStemmer(_StandardStemmer):
                     elif suffix in ("logia", "logie"):
                         word = word[:-2]
                         rv = word[:-2]
+
+                    elif suffix in ("azzo", "azza", "azzi"):
+                        word = word[:-4]
+                        rv = word[:-4]
+
+                        
 
                     elif suffix in ("uzione", "uzioni",
                                     "usione", "usioni"):
@@ -2799,7 +2808,7 @@ class ItalianStemmer(_StandardStemmer):
 
                         elif r2.endswith("abil"):
                             word = word[:-4]
-                            rv = rv[:-4]
+                            rv = rv[:-4]                        
 
                     elif suffix in ("ivo", "ivi", "iva", "ive"):
                         word = word[:-3]
